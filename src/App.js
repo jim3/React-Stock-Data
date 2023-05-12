@@ -19,14 +19,8 @@ function Weather() {
 
     if (data) {
         const forecast = Array.from(data.weather);
-        // print the weather and description to a web page
-        for (const weather of forecast) {
-            console.log(weather.main);
-            console.log(weather.description);
-            console.log(data.main.temp);
-            console.log(data.main.feels_like);
-            console.log(data.main.temp_min);
-        }
+        // for (const weather of forecast) {}
+        
         return (
             <div>
                 <h1>Weather</h1>
