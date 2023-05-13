@@ -24,34 +24,21 @@ function Weather() {
         fetchData();
     }, []);
 
-    // Create markup from `data` and assign it to `forecastList`
     if (data) {
-        const forecast = Array.from(data.weather); // convert the weather data object into an array, then map over it
-        const forecastList = forecast.map((weather, index) => {
-            return (
-                <div key={index}>
-                    <p>Weather: {weather.main}</p>
-                    <p>Description: {weather.description}</p>
-                    <p>Temperature: {data.main.temp}</p>
-                    <p>Feels Like: {data.main.feels_like}</p>
-                    <p>Low: {data.main.temp_min}</p>
-                </div>
-            );
-        });
+        // Create a list of weather components to display
+        const weatherComponents = [
+            <h2>Weather in {data.name}</h2>,
+            <p>Temperature: {data.main.temp} &deg;F</p>,
+            <p>Feels like: {data.main.feels_like} &deg;F</p>,
+            <p>Humidity: {data.main.humidity} %</p>,
+            <p>Wind Speed: {data.wind.speed} mph</p>,
+        ];
 
-        return (
-            <div>
-                <h1>Weather</h1>
-                {forecastList}
-            </div>
-        );
+        // Return the weather components
+        return <div>{weatherComponents}</div>;
     } else {
-        return (
-            <div>
-                <h1>Weather</h1>
-                <p>Loading...</p>
-            </div>
-        );
+        // Return a loading message if the data is null (i.e. the data has not been fetched)
+        return <div>Loading...</div>;
     }
 }
 
