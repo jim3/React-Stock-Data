@@ -3,7 +3,7 @@ import "./App.css";
 import React, { useState, useEffect } from "react";
 
 async function getStockData() {
-    const apiKey = process.env.API_KEY;
+    const apiKey = process.env.REACT_APP_STOCK_API_KEY;
     const func = "TIME_SERIES_DAILY_ADJUSTED";
     const symbol = "MSFT";
     const baseURL = `https://www.alphavantage.co/query?`;
@@ -42,7 +42,6 @@ function Stocks() {
                 <p>Stock Time Zone: {data["Meta Data"]["5. Time Zone"]}</p>
             </div>,
         ];
-        // Return the stock components
         return <div>{stockComponents}</div>;
     } else {
         return <div>Loading...</div>;
