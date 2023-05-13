@@ -18,10 +18,10 @@ async function getStockData() {
 }
 
 function Stocks() {
-    // Create a state variable to hold the stock data (Alphavantage API)
+    // Create a state variable to hold data
     const [data, setData] = useState(null);
 
-    // Fetch stock api data
+    // Fetch data
     useEffect(() => {
         async function fetchData() {
             const stockData = await getStockData();
@@ -32,6 +32,7 @@ function Stocks() {
 
     if (data) {
         // Create a list of stock components to display
+        // TODO: Research best ways to display the stock data: table/chart/graph/etc...
         const stockComponents = [
             <div key="1">
                 <h1>Stock Data</h1>
