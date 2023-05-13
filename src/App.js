@@ -3,8 +3,10 @@ import "./App.css";
 import React, { useState, useEffect } from "react";
 
 async function getWeatherData() {
+    // Get the API key from the .env file
+    const apiKey = process.env.REACT_APP_WEATHER_API_KEY;
     const URL =
-        "https://api.openweathermap.org/data/2.5/weather?zip=31721,us&appid=75b301a744e6022c353c180ed17151b4&units=imperial";
+        `https://api.openweathermap.org/data/2.5/weather?zip=31721,us&appid=${apiKey}&units=imperial`;
     const response = await fetch(URL, {
         method: "GET",
     });
