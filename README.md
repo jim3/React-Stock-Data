@@ -1,4 +1,3 @@
-### Weather App - React
+### Alpha Vantage Stock API
 
-...the start of a new weather app that will be built with React. It uses the OpenWeatherMap API to fetch the weather data...lots more to do...
-
+A React app that uses the Alpha Vantage Stock API
