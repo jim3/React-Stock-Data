@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 
 async function getWeatherData() {
     const apiKey = process.env.REACT_APP_WEATHER_API_KEY;
-    const zipCode = "31721";
+    const zipCode = "90210";
     const unit = "imperial";
     const URL = `https://api.openweathermap.org/data/2.5/weather?zip=${zipCode},us&appid=${apiKey}&units=${unit}`;
     const response = await fetch(URL, {
