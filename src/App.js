@@ -2,9 +2,6 @@
 import "./App.css";
 import React, { useState, useEffect } from "react";
 
-// https://www.alphavantage.co/documentation/#intraday Alphavantage API
-// This API returns raw (as-traded) daily open/high/low/close/volume values, daily adjusted close values, 
-// and historical split/dividend events of the global equity specified, covering 20+ years of historical data.
 async function getStockData() {
     const apiKey = process.env.API_KEY;
     const func = "TIME_SERIES_DAILY_ADJUSTED";
@@ -13,7 +10,7 @@ async function getStockData() {
     const endPoint = `function=${func}&symbol=${symbol}&apikey=${apiKey}`;
     const URL = baseURL + endPoint;
     console.log(URL);
-    
+
     const response = await fetch(URL, {
         method: "GET",
     });
@@ -24,17 +21,17 @@ function Stocks() {
     // Create a state variable to hold the stock data (Alphavantage API)
     const [data, setData] = useState(null);
 
-    // Fetch weather data
+    // Fetch stock api data
     useEffect(() => {
         async function fetchData() {
             const stockData = await getStockData();
-            setData(stockData); // set the state of the weather data object
+            setData(stockData);
         }
         fetchData();
     }, []);
 
     if (data) {
-        // Create a list of weather components to display
+        // Create a list of stock components to display
         const stockComponents = [
             <div key="1">
                 <h1>Stock Data</h1>
@@ -44,10 +41,8 @@ function Stocks() {
                 <p>Stock Output Size: {data["Meta Data"]["4. Output Size"]}</p>
                 <p>Stock Time Zone: {data["Meta Data"]["5. Time Zone"]}</p>
             </div>,
-
-        
         ];
-        // Return the weather components
+        // Return the stock components
         return <div>{stockComponents}</div>;
     } else {
         return <div>Loading...</div>;
@@ -61,5 +56,3 @@ export default function MyApp() {
         </div>
     );
 }
-
-// const URL = `https://api.openweathermap.org/data/2.5/weather?zip=${zipCode},us&appid=${apiKey}&units=${unit}`;
