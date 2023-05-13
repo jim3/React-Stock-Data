@@ -3,10 +3,10 @@ import "./App.css";
 import React, { useState, useEffect } from "react";
 
 async function getWeatherData() {
-    // Get the API key from the .env file
     const apiKey = process.env.REACT_APP_WEATHER_API_KEY;
-    const URL =
-        `https://api.openweathermap.org/data/2.5/weather?zip=31721,us&appid=${apiKey}&units=imperial`;
+    const zipCode = "31721";
+    const unit = "imperial";
+    const URL = `https://api.openweathermap.org/data/2.5/weather?zip=${zipCode},us&appid=${apiKey}&units=${unit}`;
     const response = await fetch(URL, {
         method: "GET",
     });
@@ -35,11 +35,9 @@ function Weather() {
             <p>Humidity: {data.main.humidity} %</p>,
             <p>Wind Speed: {data.wind.speed} mph</p>,
         ];
-
         // Return the weather components
         return <div>{weatherComponents}</div>;
     } else {
-        // Return a loading message if the data is null (i.e. the data has not been fetched)
         return <div>Loading...</div>;
     }
 }
