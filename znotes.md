@@ -1,3 +1,12 @@
+> latest working code, using async/await intead of then handlers
+
+---
+
+> GPT-3 generated code (Bard was incorrect)
+
+---
+
+```js
 // Import statements and function definition
 import "./App.css";
 import React, { useState, useEffect } from "react";
@@ -27,9 +36,9 @@ function Weather() {
     // Create markup from `data` and assign it to `forecastList`
     if (data) {
         const forecast = Array.from(data.weather); // convert the weather data object into an array, then map over it
-        const forecastList = forecast.map((weather, index) => {
+        const forecastList = forecast.map((weather) => {
             return (
-                <div key={index}>
+                <div>
                     <p>Weather: {weather.main}</p>
                     <p>Description: {weather.description}</p>
                     <p>Temperature: {data.main.temp}</p>
@@ -62,3 +71,55 @@ export default function MyApp() {
         </div>
     );
 }
+```
+
+> leftover code from the weather app
+
+---
+
+```jsx
+return (
+    <div>
+        <h1>Weather</h1>
+        {forecast}
+        <p>Temperature: {data.main.temp}</p>
+        <p>Feels Like: {data.main.feels_like}</p>
+        <p>Low: {data.main.temp_min}</p>
+    </div>
+);
+
+return (
+    <div>
+        <h1>Weather</h1>
+        <p>Weather: {data.weather[0].main}</p>
+        <p>Description: {data.weather[0].description}</p>
+        <p>Temperature: {data.main.temp}</p>
+        <p>Feels Like: {data.main.feels_like}</p>
+        <p>Low: {data.main.temp_min}</p>
+    </div>
+);
+
+const forecast = data.weather.map((weather) => {
+    return (
+        <div>
+            <p>Weather: {weather.main}</p>
+            <p>Description: {weather.description}</p>
+        </div>
+    );
+});
+
+for (const weather of forecast) {
+    // map over the array and create a new array of JSX elements
+    console.log(weather);
+    return (
+        <div>
+            <h1>Weather</h1>
+            <p>Weather: {forecast[0].main}</p>
+            <p>Description: {forecast[0].description}</p>
+            <p>Temperature: {data.main.temp}</p>
+            <p>Feels Like: {data.main.feels_like}</p>
+            <p>Low: {data.main.temp_min}</p>
+        </div>
+    );
+}
+```
