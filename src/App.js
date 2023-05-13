@@ -8,7 +8,6 @@ async function getStockData() {
     const topics = "technology";
     const baseURL = `https://www.alphavantage.co/query?`;
     const endPoint = `function=${func}&tickers=${tickers}&topics${topics}&apikey=${apiKey}`;
-    // const endPoint = `function=${func}&symbol=${symbol}&apikey=${apiKey}`;
     const URL = baseURL + endPoint;
     console.log(URL);
 
@@ -22,7 +21,6 @@ function Stocks() {
     // Create a state variable to hold data
     const [data, setData] = useState(null);
 
-    // Fetch data syntx for useEffect: useEffect(() => {callback function}, [array of state variables to watch for changes]);
     useEffect(() => {
         async function fetchData() {
             const stockData = await getStockData();
@@ -34,7 +32,7 @@ function Stocks() {
     if (data) {
         // create a list of stock data news articles to display
         const stockNews = data.feed;
-        console.log(stockNews);
+        // take the feed and map it to a list of JSX elements
         const stockNewsList = stockNews.map((article, index) => {
             return (
                 <div key={index}>
@@ -60,4 +58,5 @@ function Stocks() {
     }
 }
 
+// Export the component to use in other files
 export default Stocks;
