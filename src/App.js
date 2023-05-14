@@ -1,12 +1,12 @@
 import "./App.css";
 import React, { useState, useEffect } from "react";
 
-async function getStockData(ticker) {
+async function getStockData() {
     const apiKey = process.env.REACT_APP_STOCK_API_KEY;
     const func = "NEWS_SENTIMENT";
     const topics = "technology";
     const baseURL = `https://www.alphavantage.co/query?`;
-    const endPoint = `function=${func}&tickers=${ticker}&topics${topics}&apikey=${apiKey}`;
+    const endPoint = `function=${func}&keywords=${topics}&apikey=${apiKey}`;
     const URL = baseURL + endPoint;
 
     const response = await fetch(URL, {
@@ -17,12 +17,9 @@ async function getStockData(ticker) {
 
 function Stocks() {
     const [data, setData] = useState(null); // state variable to hold data
-    const tickers = ["MSFT", "AAPL", "GOOGL", "IBM"]; // array of tickers
-
     useEffect(() => {
         async function fetchData() {
-            const randomTicker = tickers[Math.floor(Math.random() * tickers.length)];
-            const stockData = await getStockData(randomTicker);
+            const stockData = await getStockData();
             setData(stockData);
         }
         fetchData();
@@ -30,15 +27,16 @@ function Stocks() {
 
     if (data) {
         const stockNews = data.feed;
+        // Cannot read properties of undefined (reading 'map') how to fix?
         const stockNewsList = stockNews.map((article, index) => {
-            return (
-                <div key={index}>
-                    <h3>{article.title}</h3>
-                    <p>{article.summary}</p>
-                    <p>{article.url}</p>
-                </div>
-            );
-        });
+                  return (
+                      <div key={index}>
+                          <h3>{article.title}</h3>
+                          <p>{article.summary}</p>
+                          <p>{article.url}</p>
+                      </div>
+                  );
+              })
         return (
             <div>
                 <h1>Alpha Vantage Stock API News List</h1>
