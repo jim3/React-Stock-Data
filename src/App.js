@@ -1,13 +1,13 @@
 import "./App.css";
 import React, { useState, useEffect } from "react";
 
-async function getStockData() {
+async function getStockData(ticker) {
     const apiKey = process.env.REACT_APP_STOCK_API_KEY;
     const func = "NEWS_SENTIMENT";
-    const tickers = "MSFT";
+    // const ticker = "MSFT";
     const topics = "technology";
     const baseURL = `https://www.alphavantage.co/query?`;
-    const endPoint = `function=${func}&tickers=${tickers}&topics${topics}&apikey=${apiKey}`;
+    const endPoint = `function=${func}&tickers=${ticker}&topics${topics}&apikey=${apiKey}`;
     const URL = baseURL + endPoint;
     console.log(URL);
 
@@ -20,10 +20,12 @@ async function getStockData() {
 function Stocks() {
     // Create a state variable to hold data
     const [data, setData] = useState(null);
+    const tickers = ["MSFT", "AAPL", "GOOGL", "IBM"]; // array of tickers
 
     useEffect(() => {
         async function fetchData() {
-            const stockData = await getStockData();
+            const randomTicker = tickers[Math.floor(Math.random() * tickers.length)];
+            const stockData = await getStockData(randomTicker);
             setData(stockData);
         }
         fetchData();
@@ -32,13 +34,14 @@ function Stocks() {
     if (data) {
         // create a list of stock data news articles to display
         const stockNews = data.feed;
+        console.log(stockNews);
         // take the feed and map it to a list of JSX elements
         const stockNewsList = stockNews.map((article, index) => {
             return (
                 <div key={index}>
                     <h3>{article.title}</h3>
                     <p>{article.summary}</p>
-                    <p>{article.link}</p>
+                    <p>{article.url}</p>
                 </div>
             );
         });
@@ -58,5 +61,4 @@ function Stocks() {
     }
 }
 
-// Export the component to use in other files
 export default Stocks;
