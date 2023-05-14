@@ -6,9 +6,8 @@ async function getStockData(ticker) {
     const func = "NEWS_SENTIMENT";
     const topics = "technology";
     const baseURL = `https://www.alphavantage.co/query?`;
-    const endPoint = `function=${func}&tickers=${ticker}&topics${topics}&apikey=${apiKey}`;e3xseA
+    const endPoint = `function=${func}&tickers=${ticker}&topics${topics}&apikey=${apiKey}`;
     const URL = baseURL + endPoint;
-    console.log(URL);
 
     const response = await fetch(URL, {
         method: "GET",
