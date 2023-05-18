@@ -16,7 +16,8 @@ async function getStockData() {
 }
 
 function Stocks() {
-    const [data, setData] = useState(null); // state variable to hold data
+    const [data, setData] = useState(); // state variable to hold data
+    
     useEffect(() => {
         async function fetchData() {
             const stockData = await getStockData();
@@ -29,14 +30,14 @@ function Stocks() {
         const stockNews = data.feed;
         // Cannot read properties of undefined (reading 'map') how to fix?
         const stockNewsList = stockNews.map((article, index) => {
-                  return (
-                      <div key={index}>
-                          <h3>{article.title}</h3>
-                          <p>{article.summary}</p>
-                          <p>{article.url}</p>
-                      </div>
-                  );
-              })
+            return (
+                <div key={index}>
+                    <h3>{article.title}</h3>
+                    <p>{article.summary}</p>
+                    <p>{article.url}</p>
+                </div>
+            );
+        });
         return (
             <div>
                 <h1>Alpha Vantage Stock API News List</h1>
