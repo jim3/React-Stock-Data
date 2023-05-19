@@ -1,6 +1,6 @@
 ### Alpha Vantage Stock API
 
-A(nother) "work-in-progress" app. I am finding I learn best by doing, so I'm building this app to learn React. Will add to this README as I go...
+A quick project in order to check out React...there is *a lot* more to learn but it was good to get a feel for it...
 
 #### To run locally:
 
